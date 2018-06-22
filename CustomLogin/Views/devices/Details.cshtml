@@ -1,0 +1,90 @@
+﻿@model CustomLogin.Models.device
+
+@{
+    Layout = "~/Views/Navbar.cshtml";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DEVICE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DManufacturer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DManufacturer)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DType)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DType)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DOS)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DOS)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DOSVersion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DOSVersion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DProcessor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DProcessor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DRAM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DRAM)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.user.userName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.user.userName)
+            </dd>
+    
+        </dl>
+    </div>
+</body>
+</html>

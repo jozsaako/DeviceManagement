@@ -1,0 +1,115 @@
+﻿@model IEnumerable< CustomLogin.Models.device >
+
+
+@{
+    Layout = "~/Views/Navbar.cshtml";
+    if(Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Style/device.css" rel="stylesheet" />
+    <link href="~/Style/login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/Login.js"></script>
+    <title>@ViewBag.Title Device Management Application</title>
+    
+    <title>Index</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-15 col-md-offset custyle">
+                <div class="text-center">
+                </div>
+
+                <table class="table table-striped custab">
+                    <thead>
+                        <tr>
+                            <th align="center">
+                                @Html.ActionLink("Name", "Index", new { sortBy = ViewBag.SortNameParameter })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Manufacturer", "Index", new { sortBy = ViewBag.SortManufacturerParameter })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Type", "Index", new { sortBy = ViewBag.SortTypeParameter })
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DOS)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DOSVersion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DProcessor)
+                            </th>
+                            <th align="center">
+                                @Html.DisplayNameFor(model => model.DRAM)
+                            </th>
+                            <th>
+                                @Html.ActionLink("Owner", "Index", new { sortBy = ViewBag.SortOwnerParameter })
+                            </th>
+                            @if (Session["isAdmin"].Equals(true)) {
+                            <th>Action</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DManufacturer)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DOS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DOSVersion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DProcessor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DRAM)
+                                </td>
+                                <td style="color: red">
+                                    @Html.DisplayFor(modelItem => item.user.userName)
+                                </td>
+                                @if (Session["isAdmin"].Equals(true))
+                                {
+
+
+                                    <td class="text-center">
+                                        @Html.ActionLink("Edit", "Edit", "devices", new { id = item.DeviceID}, null)<br />
+                                        @Html.ActionLink("Details", "Details", "devices", new { id = item.DeviceID }, null)<br />
+                                        @Html.ActionLink("Delete", "Delete", "devices", new { id = item.DeviceID }, null)
+                                    </td>
+                                }
+                            </tr>
+                        }
+
+                </table>
+            </div>
+        </div>
+    </div>
+    
+        
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿@model CustomLogin.Models.user
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Style/login.css" rel="stylesheet" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/Login.js"></script>
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-login">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <a href="#" class="active" id="register-form-link">Register</a>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                @using (Html.BeginForm("Add", "Register", FormMethod.Post, new { style = "display: block;" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { placeholder = "Username", tabindex = "1", @class = "form-control" } })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ValidationMessageFor(model => model.userName)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { placeholder = "Email Address", tabindex = "2", @class = "form-control" } })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ValidationMessageFor(model => model.email)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { placeholder = "Password", tabindex = "3", @class = "form-control" } })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ValidationMessageFor(model => model.password)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { placeholder = "Confirm Password", tabindex = "4", @Class = "form-control" } })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.ValidationMessageFor(model => model.confirmPassword)
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { placeholder = "Location", tabindex = "5", @Class = "form-control" } })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="button" onclick="location.href='@Url.Action("Login", "Register")'" name="login" id="login" tabindex="4" class="form-control btn btn-login" value="Log In">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="field-validation-success">
+                                                    @ViewBag.SuccessMessage
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="field-validation-error">
+                                                    @ViewBag.DuplicateMessage
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
